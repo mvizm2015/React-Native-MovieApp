@@ -28,12 +28,20 @@ export default class MovieList extends Component{
             {id:0, title: ''},
             {id:1, title: ''},
             {id:2, title: ''}
-        ]
+        ],
+        nowPlaying: [
+            {id:0, title: ''},
+            {id:1, title: ''},
+            {id:2, title: ''}
+        ] 
     }
 
     componentDidMount () {
         Services.getUpcomingMovies().then(response => {
             this.setState({upcoming: response.results});
+        })
+        Services.getNowPlaying().then(response => {
+            this.setState({nowPlaying: response.results});
         })
     }
 
@@ -65,7 +73,7 @@ export default class MovieList extends Component{
       <View style={styles.listcontainer}>
       <Text>NOW</Text>
       <FlatList
-        data={this.state.upcoming}
+        data={this.state.nowPlaying}
         extraData={this.state}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderNowPlaying}

@@ -9,15 +9,17 @@ import {
     Text
 } from 'react-native';
 
+import Services from '../services';
+
 import {ORANGE, PINK, WHITE, GREYGB, GREYBG} from '../../styles';
 
 export default class NowListItem extends Component {
 
     render() {
-        const {title} = this.props.data;
+        const {title, poster_path} = this.props.data;
         return (
             <TouchableOpacity style={styles.container}>
-            <Image style={styles.img}/>
+            <Image style={styles.img} source={{uri: `${Services.imageUrl}w500${poster_path}`}}/>
             <Text style={styles.title}>{title}</Text>
             <View style={styles.imgShadow}/>
             </TouchableOpacity>
