@@ -16,6 +16,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import {ORANGE, PINK, WHITE} from '../../styles';
 
 export default class Welcome extends Component{
+  componentDidMount () {
+    setTimeout(() => {
+      this.props.navigation.navigate('movieList');
+    }, 4000)
+  }
+
   render() {
     return (
       <LinearGradient colors={[ORANGE, PINK]} style={styles.container}>
