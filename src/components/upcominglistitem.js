@@ -1,25 +1,28 @@
 'use strict';
-
 import React, { Component } from 'react';
 
 import {
-    Stylesheet,
+    StyleSheet,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Image,
+    Text
 } from 'react-native';
-import linearGradient from 'react-native-linear-gradient';
+
+import LinearGradient from 'react-native-linear-gradient';
 
 import {ORANGE, PINK, WHITE, GREYGB, GREYBG} from '../../styles';
 
 export default class UpcomingListItem extends Component {
 
     render() {
+        const {title} = this.props.data;
         return (
             <TouchableOpacity style={styles.container}>
-                <View style={styes.wrapper}>
-                    <Image styles={styles.img}/>
-                    <linearGradient colors={[ORANGE, PINK]} style={styles.overlay}/>
-                    <Text style={styles.title}></Text>
+                <View style={styles.wrapper}>
+                    <Image style={styles.img}/>
+                    <LinearGradient colors={[ORANGE, PINK]} style={styles.overlay}/>
+                    <Text style={styles.title}>{title}</Text>
                 </View>
                 <View style={styles.imgShadow}/>
             </TouchableOpacity>
@@ -30,7 +33,7 @@ export default class UpcomingListItem extends Component {
 const styles = StyleSheet.create({
     container: {
         width: 320,
-        heigh: 180,
+        height: 180,
         marginRight: 20
     },
     wrapper: {
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: WHITE,
         position: 'absolute',
-        buttom: 20,
+        bottom: 20,
         right: 20,
         zIndex: 3
     }, 

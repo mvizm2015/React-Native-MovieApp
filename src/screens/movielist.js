@@ -15,6 +15,8 @@ import {
 
 import {ORANGE, PINK, WHITE, GREYGB} from '../../styles';
 
+import UpcomingListItem from '../components/upcominglistitem';
+
 export default class MovieList extends Component{
     state = {
         upcoming: [
@@ -30,9 +32,7 @@ export default class MovieList extends Component{
     keyExtractor = item => `${item.id}`;
 
     renderUpcoming = ({item}) => (
-        <View>
-            <Text>{item.title}</Text>
-        </View>
+        <UpcomingListItem data={item}/>
     );
 
   render() {
