@@ -28,14 +28,16 @@ export default class NowListItem extends Component {
 const styles = StyleSheet.create({
     container: {
         width: 140,
-        height: 240,
+        height: 340,
         marginRight: 20
     },
     img: {
+        position: 'relative',
         backgroundColor: 'rgb(230, 230, 230)',
         width: 140,
         height: 210,
-        borderRadius: 6
+        borderRadius: 6,
+        zIndex: 1
     },
     title: {
         marginTop: 20,
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
         left: 8,
         backgroundColor: '#000',
         opacity: 0.5,
-        width: 193,
+        width: 120,
         height: 185,
         zIndex: 0,
         position: 'absolute',

@@ -10,23 +10,35 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList
+  FlatList,
+  ScrollView,
+  LayoutAnimation,
 } from 'react-native';
 
 import {ORANGE, PINK, WHITE, GREYGB} from '../../styles';
 
 import UpcomingListItem from '../components/upcominglistitem';
+import NowListItem from '../components/nowlistitem';
+
+import Services from '../services';
 
 export default class MovieList extends Component{
     state = {
         upcoming: [
-            {id:0, title: 'Test 0'},
-            {id:1, title: 'Test 1'},
-            {id:2, title: 'Test 2'},
-            {id:3, title: 'Test 3'},
-            {id:4, title: 'Test 4'},
-            {id:5, title: 'Test 5'},
+            {id:0, title: ''},
+            {id:1, title: ''},
+            {id:2, title: ''}
         ]
+    }
+
+    componentDidMount () {
+        Services.getUpcomingMovies().then(response => {
+            this.setState({upcoming: response.results});
+        })
+    }
+
+    componentWillUpdate () {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     }
 
     keyExtractor = item => `${item.id}`;
@@ -34,10 +46,14 @@ export default class MovieList extends Component{
     renderUpcoming = ({item}) => (
         <UpcomingListItem data={item}/>
     );
+    
+    renderNowPlaying = ({item}) => (
+        <NowListItem data={item}/>
+    );
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
       <Text style={styles.title}>MOVIES</Text>
       <FlatList 
         data={this.state.upcoming}
@@ -46,7 +62,17 @@ export default class MovieList extends Component{
         renderItem={this.renderUpcoming}
         horizontal
       />
+      <View style={styles.listcontainer}>
+      <Text>NOW</Text>
+      <FlatList
+        data={this.state.upcoming}
+        extraData={this.state}
+        keyExtractor={this.keyExtractor}
+        renderItem={this.renderNowPlaying}
+        horizontal
+        />
       </View>
+      </ScrollView>
     );
   }
 }
